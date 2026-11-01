@@ -31,6 +31,13 @@ The first launch installs packages from GNU ELPA, NonGNU ELPA, and MELPA. This t
 | Python     | `basedpyright` (falls back to `pyright`)     | `ruff` (isort + fmt) | `ruff` (flymake-ruff) + basedpyright types    |
 | TypeScript | `tsc --lsp` (TypeScript ≥ 7)                 | `prettier`           | `eslint` (flymake-eslint) + tsc               |
 
+AI agents (optional, for agent-shell):
+
+| Agent       | ACP adapter (required)                         | CLI (for signing in)  |
+|-------------|------------------------------------------------|-----------------------|
+| Claude Code | `claude-agent-acp`                             | `claude`              |
+| Codex       | `codex-acp`                                    | `codex`               |
+
 ## Installing the tools
 
 You need Emacs 31 or later, built with tree-sitter and (ideally) native compilation. You also need a C compiler, because Emacs compiles tree-sitter grammars the first time it needs them.
@@ -66,6 +73,10 @@ npm i -g typescript prettier eslint
 brew install llvm                                         # lldb-dap (C++/Rust)
 go install github.com/go-delve/delve/cmd/dlv@latest       # Go
 uv tool install debugpy                                   # Python
+
+# Optional: AI agents for agent-shell (CLIs for signing in + ACP adapters)
+npm i -g @anthropic-ai/claude-code @openai/codex
+npm i -g @agentclientprotocol/claude-agent-acp @agentclientprotocol/codex-acp
 ```
 
 ### Ubuntu / Debian
@@ -98,6 +109,10 @@ npm i -g typescript prettier eslint
 sudo apt install -y lldb                                  # lldb-dap (C++/Rust)
 go install github.com/go-delve/delve/cmd/dlv@latest       # Go
 uv tool install debugpy                                   # Python
+
+# Optional: AI agents for agent-shell (CLIs for signing in + ACP adapters)
+npm i -g @anthropic-ai/claude-code @openai/codex
+npm i -g @agentclientprotocol/claude-agent-acp @agentclientprotocol/codex-acp
 ```
 
 On Ubuntu, `fd` installs as `fdfind`; consult finds it automatically. Make sure `~/go/bin`, `~/.cargo/bin` and `~/.local/bin` are on your shell `PATH`.
@@ -214,6 +229,7 @@ After switching to a new Emacs build, delete `~/.config/emacs/eln-cache/` so pac
 | **magit**                       | Git porcelain                                                   |
 | **diff-hl**                     | Git change markers in the fringe                                |
 | **dape**                        | Debugger (DAP client)                                           |
+| **agent-shell**                 | Claude Code and Codex agents in a buffer (ACP)                  |
 | **avy / expreg / multiple-cursors** | Jump anywhere, expand region, multiple cursors              |
 | **vundo**                       | Visual undo tree                                                |
 | **helpful**                     | Better `C-h` help buffers                                       |
@@ -360,6 +376,14 @@ Start a session with `M-x dape` and pick a config (`codelldb`/`lldb-dap`, `dlv`,
 | `C-x C-a o`  | Step out          |
 | `C-x C-a r`  | Restart           |
 | `C-x C-a q`  | Quit              |
+
+### AI agents (agent-shell)
+
+| Key        | Action                                       |
+|------------|----------------------------------------------|
+| `C-c a a`  | Start an agent (pick from the list)          |
+| `C-c a c`  | Start Claude Code                            |
+| `C-c a x`  | Start Codex                                  |
 
 ### Windows, help & toggles
 

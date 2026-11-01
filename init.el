@@ -497,6 +497,16 @@
   :ensure nil
   :custom (python-indent-guess-indent-offset-verbose nil))
 
+;;;; AI agents: agent-shell (ACP) ----------------------------------------------------
+
+;; Claude Code and Codex in an Emacs buffer via the Agent Client Protocol.
+;; Needs the ACP adapters on PATH:
+;;   npm install -g @agentclientprotocol/claude-agent-acp @agentclientprotocol/codex-acp
+(use-package agent-shell
+  :bind (("C-c a a" . agent-shell)
+         ("C-c a c" . agent-shell-anthropic-start-claude-code)
+         ("C-c a x" . agent-shell-openai-start-codex)))
+
 ;;;; Server ------------------------------------------------------------------------
 
 (use-package server
