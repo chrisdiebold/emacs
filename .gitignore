@@ -1,0 +1,26 @@
+# Packages and compiled artifacts (reinstalled on startup)
+/elpa/
+/eln-cache/
+/tree-sitter/
+*.elc
+
+# Runtime state
+/auto-save/
+/history
+/recentf.eld
+/tramp
+/savehist
+/places
+/bookmarks
+/projects
+/transient/
+/url/
+/eshell/
+/multisession/
+/server/
+/custom.el
+
+# Backup and lock files
+*~
+\#*#
+.#*
